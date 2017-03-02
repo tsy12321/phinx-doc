@@ -594,7 +594,7 @@ Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 Pos
 | update | 当数据更新时的触发动作 （CURRENT\_TIMESTAMP） |
 | timezone | 开启或关闭 with time zone 选项 |
 
-可以在标准使用 `addTimestamps()` 方法添加 `created_at`_ 和 `updated_at`_ 。方法支持自定义名字。
+可以在标准使用 `addTimestamps()` 方法添加 `created_at`_ 和 _`updated_at` 。方法支持自定义名字。
 
 ```
 <?php
@@ -620,7 +620,7 @@ class MyNewMigration extends AbstractMigration
 | :--- | :--- |
 | signed | 开启或关闭 unsigned 选项（仅适用于 MySQL） |
 
-`string` 和` text` 类型字段：
+`string` 和`text` 类型字段：
 
 | 选项 | 描述 |
 | :--- | :--- |
@@ -637,8 +637,6 @@ class MyNewMigration extends AbstractMigration
 你可以将一个或者多个选项到第三个选项参数数组中。
 
 ### Limit 选项 和 PostgreSQL
-
-
 
 
 
