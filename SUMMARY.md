@@ -3,4 +3,5 @@
 * [关于](README.md)
 * [介绍](introduction.md)
 * [目标](goals.md)
+* [安装](installation.md)
 
