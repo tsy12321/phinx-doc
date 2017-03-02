@@ -110,5 +110,7 @@ class MyNewMigration extends AbstractMigration
 }
 ```
 
+> 当调用 removeIndex\(\) 方法时不需要调用 save\(\) 方法。 索引会立即删除
+
 
 

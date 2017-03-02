@@ -6,4 +6,5 @@
 * [安装](installation.md)
 * [迁移脚本](writing-migrations.md)
   * [索引操作](writing-migrations-workings-with-indexes.md)
+  * [外键操作](writing-migrations-working-with-foreign-keys.md)
 
