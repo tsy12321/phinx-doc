@@ -55,8 +55,6 @@ class MyNewMigration extends AbstractMigration
 
 所有迁移脚本都继承类 `AbstractMigration` 。这个类提供了迁移脚本的基本方法。迁移脚本可以通过很多方法改变你的数据库，比如创建新表、插入数据、增加索引和修改字段等等。
 
-
-
 ### Change 方法
 
 Phinx 0.2.0 介绍了一个新功能-逆迁移（回滚）。现在这个功能成为了脚本的默认方法。在这个方法中，你只需要定义 `up` 的逻辑，Phinx 可以在回滚的时候自动识别出如何down。比如：
@@ -107,7 +105,21 @@ class CreateUserLoginsTable extends AbstractMigration
 
 > 当在 `change()` 方法中创建或者更新表的时候你必须使用 `create()` 或者 `update()` 方法。当使用 `save()` 方法时，Phinx无法识别是创建还是修改数据表。
 
+Phinx只能回滚以下命令：
 
+1. createTable
+
+2. renameTable
+
+3. addColumn
+
+4. renameColumn
+
+5. addIndex
+
+6. addForeignKey
+
+如果一个命令无法回滚，那 Phinx 会抛出 `IrreversibleMigrationException` 异常。
 
 
 
