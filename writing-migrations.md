@@ -123,6 +123,163 @@ Phinx只能回滚以下命令：
 
 ### Up 方法
 
+up方法会在Phinx执行迁移命令时自动执行，并且该脚本之前并没有执行过。你应该将修改数据库的方法写在这个方法里。
+
+### Down 方法
+
+down方法会在Phinx执行回滚命令时自动执行，并且该脚本之前已经执行过迁移。你应该将回滚代码放在这个方法里。
+
+## 执行查询
+
+可以使用 `execute()` 和 `query()` 方法进行查询。`execute()` 方法会返回查询条数，`query()` 方法会返回结果。结果参照 [PDOStatement](http://php.net/manual/en/class.pdostatement.php)
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        // execute()
+        $count = $this->execute('DELETE FROM users'); // returns the number of affected rows
+
+        // query()
+        $rows = $this->query('SELECT * FROM users'); // returns the result as an array
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
+## 获取数据
+
+有2个方法可以获取数据。 `fetchRow()` 方法可以返回一条数据， `fetchAll()` 可以返回多条数据。2个方法都可以使用原生 SQL 语句作为参数。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        // fetch a user
+        $row = $this->fetchRow('SELECT * FROM users');
+
+        // fetch an array of messages
+        $rows = $this->fetchAll('SELECT * FROM messages');
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
+## 插入数据
+
+Phinx 可以很简单的帮助你在表中插入数据。尽管这个功能也在 [seed](/database-seeding.md) 中实现了。你也可以在迁移脚本中实现插入数据。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class NewStatus extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        // inserting only one row
+        $singleRow = [
+            'id'    => 1,
+            'name'  => 'In Progress'
+        ]
+
+        $table = $this->table('status');
+        $table->insert($singleRow);
+        $table->saveData();
+
+        // inserting multiple rows
+        $rows = [
+            [
+              'id'    => 2,
+              'name'  => 'Stopped'
+            ],
+            [
+              'id'    => 3,
+              'name'  => 'Queued'
+            ]
+        ];
+
+        // this is a handy shortcut
+        $this->insert('status', $rows);
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        $this->execute('DELETE FROM status');
+    }
+}
+```
+
+> 不能在 _change\(\)_ 方法中使用插入数据，只能在 _up\(\)_ 和 _down\(\)_ 中使用
+
+## 操作数据表
+
+### Table 对象
+
+Table对象是Phinx中最有用的API之一。它可以让你方便的用 PHP 代码操作数据库。我们可以通过 `table()` 方法取到Table对象。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $table = $this->table('tableName');
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
 
 
 
