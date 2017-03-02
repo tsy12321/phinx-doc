@@ -4,4 +4,5 @@
 * [介绍](introduction.md)
 * [目标](goals.md)
 * [安装](installation.md)
+* [迁移脚本](writing-migrations.md)
 
