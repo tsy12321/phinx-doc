@@ -4,7 +4,7 @@
 
 Table对象是Phinx中最有用的API之一。它可以让你方便的用 PHP 代码操作数据库。我们可以通过 `table()` 方法取到Table对象。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -41,7 +41,7 @@ class MyNewMigration extends AbstractMigration
 
 使用 Table 可以很简单的创建一个表，现在我们创建一个存储用户信息的表
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -84,7 +84,7 @@ id 选项会自动创建一个唯一字段，`primary_key`_ 选项设置哪个�
 
 如果要指定一个主键，你可以设置 `primary_key` 选项，关闭自动生成 `id` 选项，并使用2个字段定义为主键。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -115,7 +115,7 @@ class MyNewMigration extends AbstractMigration
 
 单独设置 `primary_key`_ 选项并不能开启 _`AUTO_INCREMENT` 选项。如果想简单的改变主键名，我们只有覆盖 `id` 字段名即可。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -177,7 +177,7 @@ Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 Pos
 
 可以使用 `hasTable()` 判断表是否存在。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -209,7 +209,7 @@ class MyNewMigration extends AbstractMigration
 
 可以用 `dropTable()` 方法删除表。这时可以在 \`down\(\)\` 方法中重新创建表，可以在回滚的时候恢复。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -248,7 +248,7 @@ class MyNewMigration extends AbstractMigration
 
 可以用 `rename()` 方法重命名表名。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;

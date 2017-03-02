@@ -2,7 +2,7 @@
 
 Phinx 支持创建外键限制数据表。下面是一个外键创建例子
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -39,7 +39,7 @@ class MyNewMigration extends AbstractMigration
 
 也可以使用 `addForeignKey()` 多个字段。允许我们建立多个组合字段的外键
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -74,7 +74,7 @@ class MyNewMigration extends AbstractMigration
 
 我们可以使用 `constraint` 参数给外面命名。仅支持 Phinx 版本 大于0.6.5
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -104,7 +104,7 @@ class MyNewMigration extends AbstractMigration
 
 可以通过 `hasForeignKey()` 方法检查是否有外键
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -135,7 +135,7 @@ class MyNewMigration extends AbstractMigration
 
 最后，可以使用 `dropForeignKey` 方法删除外键
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;

@@ -13,7 +13,7 @@
 * 标准输出
 * 不像 JSON 和 YAML，\*\*\*\*\*（这句话不大理解）
 
-```
+```php
 require 'app/init.php';
 
 global $app;
@@ -52,7 +52,7 @@ paths:
         - application/module2/migrations
 ```
 
-可以使用在你的路径中使用 `%%PHINX_CONFIG_DIR%% `
+可以使用在你的路径中使用 `%%PHINX_CONFIG_DIR%%`
 
 ```
 paths:
@@ -76,7 +76,7 @@ migration_base_class: MyMagicalMigration
 
 ## Seed 路径
 
-第二个选项指定了Seed放置目录。 默认是` %%PHINX_CONFIG_DIR%%/db/seeds`
+第二个选项指定了Seed放置目录。 默认是`%%PHINX_CONFIG_DIR%%/db/seeds`
 
 > `%%PHINX_CONFIG_DIR%% 自动替换为项目根目录`
 
@@ -96,7 +96,7 @@ paths:
         - /your/full/path2
 ```
 
-可以使用在你的路径中使用 `%%PHINX_CONFIG_DIR%% `
+可以使用在你的路径中使用 `%%PHINX_CONFIG_DIR%%`
 
 ```
 paths:
@@ -192,7 +192,7 @@ Phinx 当前支持以下数据库adapter
 
 * [MySQL](http://www.mysql.com/)：指定 `mysql` adapter
 
-* [PostgreSQL](http://www.postgresql.org/)：指定 `pssql `adapter
+* [PostgreSQL](http://www.postgresql.org/)：指定 `pssql`adapter
 
 * [SQLite](http://www.sqlite.org/)：指定 `sqlite` adapter
 

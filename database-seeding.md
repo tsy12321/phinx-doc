@@ -16,7 +16,7 @@ $ php vendor/bin/phinx seed:create UserSeeder
 
 下面的Seed基于一个框架模板：
 
-```
+```php
 <?php
 
 use Phinx\Seed\AbstractSeed;
@@ -52,9 +52,9 @@ Run 方法将在 Phinx 执行 seed:run 时被自动调用。你可以将测试�
 
 ### 使用Table对象
 
-Seed 类也可以使用 Table 对象来插入数据。你可以调用 `table()` 方法来获取 Table 对象，然后调用` insert()` 方法来插入数据。
+Seed 类也可以使用 Table 对象来插入数据。你可以调用 `table()` 方法来获取 Table 对象，然后调用`insert()` 方法来插入数据。
 
-```
+```php
 <?php
 
 use Phinx\Seed\AbstractSeed;
@@ -93,7 +93,7 @@ $ composer require fzaninotto/faker
 
 然后在 seed 中使用
 
-```
+```php
 <?php
 
 use Phinx\Seed\AbstractSeed;
@@ -125,7 +125,7 @@ class UserSeeder extends AbstractSeed
 
 可以使用 TRUNCATE 命令来清空数据表
 
-```
+```php
 <?php
 
 use Phinx\Seed\AbstractSeed;
@@ -182,6 +182,4 @@ $ php vendor/bin/phinx seed:run -v
 ```
 
 Phinx seed 提供了一个很简单的机制方便开发者可重复的插入测试数据
-
-
 

@@ -68,7 +68,7 @@ Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 Pos
 
 可以在标准使用 `addTimestamps()` 方法添加 `created_at`_ 和 _`updated_at` 。方法支持自定义名字。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -116,7 +116,7 @@ class MyNewMigration extends AbstractMigration
 | :--- | :--- |
 | INT\_SMALL | SMALLINT |
 
-```
+```php
 use Phinx\Db\Adapter\PostgresAdapter;
 
 //...
@@ -147,7 +147,7 @@ $table->addColumn('user_id', 'integer')
 | INT\_REGULAR | INT |
 | INT\_BIG | BIGINT |
 
-```
+```php
 use Phinx\Db\Adapter\MysqlAdapter;
 
 //...
@@ -164,7 +164,7 @@ $table->addColumn('user_id', 'integer')
 
 调用 `getColumns()` 可以获得表的所有字段。该方法返回 `Column` 类的数组。如下例子
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -194,7 +194,7 @@ class ColumnListMigration extends AbstractMigration
 
 调用 `hasColumn()` 方法判断指定字段是否存在
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -221,7 +221,7 @@ class MyNewMigration extends AbstractMigration
 
 调用 `renameColumn()` 方法重命名字段
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -252,7 +252,7 @@ class MyNewMigration extends AbstractMigration
 
 可以使用 `after` 选项指定字段创建的位置
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -275,7 +275,7 @@ class MyNewMigration extends AbstractMigration
 
 使用 `removeColumn()` 方法删除字段
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -298,7 +298,7 @@ class MyNewMigration extends AbstractMigration
 
 使用 `limit` 选项设置字段的最大长度
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -321,7 +321,7 @@ class MyNewMigration extends AbstractMigration
 
 使用 `changeColumn()` 方法修改字段属性
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;

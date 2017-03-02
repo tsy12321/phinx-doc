@@ -2,7 +2,7 @@
 
 Phinx 可以很简单的帮助你在表中插入数据。尽管这个功能也在 [seed](/database-seeding.md) 中实现了。你也可以在迁移脚本中实现插入数据。
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;

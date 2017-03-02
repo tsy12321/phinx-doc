@@ -2,7 +2,7 @@
 
 可以使用 `execute()` 和 `query()` 方法进行查询。`execute()` 方法会返回查询条数，`query()` 方法会返回结果。结果参照 [PDOStatement](http://php.net/manual/en/class.pdostatement.php)
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
