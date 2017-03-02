@@ -528,6 +528,116 @@ class MyNewMigration extends AbstractMigration
 
 ## 字段操作
 
+### 字段类型
+
+字段类型如下：
+
+* biginteger
+* binary
+* boolean
+* date
+* datetime
+* decimal
+* float
+* integer
+* string
+* text
+* time
+* timestamp
+* uuid
+
+另外，MySQL adapter 支持 `enum` 、`set` 、`blob` 和 `json` （`json` 需要 MySQL 5.7 或者更高）
+
+Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 PostgresSQL 9.3 或者更高）
+
+### 字段选项
+
+以下是有效的字段选项：
+
+所有字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| limit | 为string设置最大长度 |
+| length | limit 的别名 |
+| default | 设置默认值 |
+| null | 允许空 |
+| after | 指定字段放置在哪个字段后面 |
+| comment | 字段注释 |
+
+`decimal` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| precision | 和 scale 组合设置精度 |
+| scale | 和 precision 组合设置精度 |
+| signed | 开启或关闭 unsigned 选项（仅适用于 MySQL） |
+
+`enum` 和 `set` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| values | 用逗号分隔代表值 |
+
+`integer` 和 `biginteger` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| identity | 开启或关闭自增长 |
+| signed | 开启或关闭 unsigned 选项（仅适用于 MySQL） |
+
+`timestamp` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| default | 设置默认值 （CURRENT\_TIMESTAMP） |
+| update | 当数据更新时的触发动作 （CURRENT\_TIMESTAMP） |
+| timezone | 开启或关闭 with time zone 选项 |
+
+可以在标准使用 `addTimestamps()` 方法添加 `created_at`_ 和 `updated_at`_ 。方法支持自定义名字。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Change.
+     */
+    public function change()
+    {
+        // Override the 'updated_at' column name with 'amended_at'.
+        $table = $this->table('users')->addTimestamps(null, 'amended_at')->create();
+    }
+}
+```
+
+`boolean` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| signed | 开启或关闭 unsigned 选项（仅适用于 MySQL） |
+
+`string` 和` text` 类型字段：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| collation | 设置字段的 collation （仅适用于 MySQL） |
+| encoding | 设置字段的 encoding （仅适用于 MySQL） |
+
+外键定义：
+
+| 选项 | 描述 |
+| :--- | :--- |
+| update | 设置一个触发器当数据更新时 |
+| delete | 设置一个触发器当数据删除时 |
+
+你可以将一个或者多个选项到第三个选项参数数组中。
+
+### Limit 选项 和 PostgreSQL
+
 
 
 
