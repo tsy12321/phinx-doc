@@ -638,5 +638,275 @@ class MyNewMigration extends AbstractMigration
 
 ### Limit 选项 和 PostgreSQL
 
+当使用 PostgreSQL adapter，一些其他的字段类型可以通过 `integer` 创建。使用下面的 `Limit` 选项。
+
+| Limit | 字段类型 |
+| :--- | :--- |
+| INT\_SMALL | SMALLINT |
+
+```
+use Phinx\Db\Adapter\PostgresAdapter;
+
+//...
+
+$table = $this->table('cart_items');
+$table->addColumn('user_id', 'integer')
+      ->addColumn('subtype_id', 'integer', array('limit' => PostgresAdapter::INT_SMALL))
+      ->create();
+```
+
+### Limit 选项 和 MySQL
+
+当使用 MySQL adapter，一些其他的字段类型可以通过 `integer` 、 `text` 和 `blob` 创建。使用下面的 `Limit` 选项
+
+| Limit | 字段类型 |
+| :--- | :--- |
+| BLOG\_TINY | TINYBLOB |
+| BLOB\_REGULAR | BLOG |
+| BLOG\_MEDIUM | MEDIUMELOG |
+| BLOB\_LONG | LONGBLOB |
+| TEXT\_TINY | TINYTEXT |
+| TEXT\_REGULAR | TEXT |
+| TEXT\_MEDIUM | MEDIUMTEXT |
+| TEXT\_LONG | LONGTEXT |
+| INT\_TINY | TINYINT |
+| INT\_SMALL | SMALLINT |
+| INT\_MEDIUM | MEDIUMINT |
+| INT\_REGULAR | INT |
+| INT\_BIG | BIGINT |
+
+```
+use Phinx\Db\Adapter\MysqlAdapter;
+
+//...
+
+$table = $this->table('cart_items');
+$table->addColumn('user_id', 'integer')
+      ->addColumn('product_id', 'integer', array('limit' => MysqlAdapter::INT_BIG))
+      ->addColumn('subtype_id', 'integer', array('limit' => MysqlAdapter::INT_SMALL))
+      ->addColumn('quantity', 'integer', array('limit' => MysqlAdapter::INT_TINY))
+      ->create();
+```
+
+### 获取字段List
+
+调用 `getColumns()` 可以获得表的所有字段。该方法返回 `Column` 类的数组。如下例子
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class ColumnListMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $columns = $this->table('users')->getColumns();
+        ...
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        ...
+    }
+}
+```
+
+### 检查字段是否存在
+
+调用 `hasColumn()` 方法判断指定字段是否存在
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Change Method.
+     */
+    public function change()
+    {
+        $table = $this->table('user');
+        $column = $table->hasColumn('username');
+
+        if ($column) {
+            // do something
+        }
+
+    }
+}
+```
+
+### 重命名字段
+
+调用 `renameColumn()` 方法重命名字段
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $table = $this->table('users');
+        $table->renameColumn('bio', 'biography');
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        $table = $this->table('users');
+        $table->renameColumn('biography', 'bio');
+    }
+}
+```
+
+### 在一个字段后创建字段
+
+可以使用 `after` 选项指定字段创建的位置
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Change Method.
+     */
+    public function change()
+    {
+        $table = $this->table('users');
+        $table->addColumn('city', 'string', array('after' => 'email'))
+              ->update();
+    }
+}
+```
+
+### 删除字段
+
+使用 `removeColumn()` 方法删除字段
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate up.
+     */
+    public function up()
+    {
+        $table = $this->table('users');
+        $table->removeColumn('short_name')
+              ->save();
+    }
+}
+```
+
+### 指定字段Limit
+
+使用 `limit` 选项设置字段的最大长度
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Change Method.
+     */
+    public function change()
+    {
+        $table = $this->table('tags');
+        $table->addColumn('short_name', 'string', array('limit' => 30))
+              ->update();
+    }
+}
+```
+
+### 修改字段属性
+
+使用 `changeColumn()` 方法修改字段属性
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $users = $this->table('users');
+        $users->changeColumn('email', 'string', array('limit' => 255))
+              ->save();
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
+## 索引操作
+
+使用 `addIndex()` 方法可以指定索引
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $table = $this->table('users');
+        $table->addColumn('city', 'string')
+              ->addIndex(array('city'))
+              ->save();
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
 
 
