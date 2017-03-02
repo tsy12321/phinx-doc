@@ -60,7 +60,7 @@ class MyNewMigration extends AbstractMigration
 }
 ```
 
-MySQL adapter 支持 `fulltext` 索引。 如果你使用版本低于 5.6 则必须确保数据表是 `MyISAM `引擎
+MySQL adapter 支持 `fulltext` 索引。 如果你使用版本低于 5.6 则必须确保数据表是 `MyISAM`引擎
 
 ```
 <?php
