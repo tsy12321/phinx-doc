@@ -249,7 +249,7 @@ class NewStatus extends AbstractMigration
 
 > 不能在 _change\(\)_ 方法中使用插入数据，只能在 _up\(\)_ 和 _down\(\)_ 中使用
 
-## 操作数据表
+## 数据表操作
 
 ### Table 对象
 
@@ -331,7 +331,7 @@ class MyNewMigration extends AbstractMigration
 
 > Phinx 会为每个表自动创建一个自增的主键字段 `id`
 
-id 选项会自动创建一个唯一字段，`primary_key`_ 选项设置哪个字段为主键。 `primary_key`_ 选项默认值是 `id` 。这2个选项可以设置为false。
+id 选项会自动创建一个唯一字段，`primary_key`_ 选项设置哪个字段为主键。 _`primary_key` 选项默认值是 `id` 。这2个选项可以设置为false。
 
 如果要指定一个主键，你可以设置 `primary_key` 选项，关闭自动生成 `id` 选项，并使用2个字段定义为主键。
 
@@ -364,7 +364,7 @@ class MyNewMigration extends AbstractMigration
 }
 ```
 
-单独设置 `primary_key`_ 选项并不能开启 `AUTO_INCREMENT`_ 选项。如果想简单的改变主键名，我们只有覆盖 `id` 字段名即可。
+单独设置 `primary_key`_ 选项并不能开启 _`AUTO_INCREMENT` 选项。如果想简单的改变主键名，我们只有覆盖 `id` 字段名即可。
 
 ```
 <?php
@@ -401,6 +401,134 @@ class MyNewMigration extends AbstractMigration
 | comment | 给表设置注释 |
 | engine | 定义表的引擎（默认 InnoDB） |
 | collation | 定义表的语言（默认 utf8-general-ci） |
+
+## 字段类型
+
+字段类型如下：
+
+* biginteger
+* binary
+* boolean
+* date
+* datetime
+* decimal
+* float
+* integer
+* string
+* text
+* time
+* timestamp
+* uuid
+
+另外，MySQL adapter 支持 `enum` 、`set` 、`blob` 和 `json` （`json` 需要 MySQL 5.7 或者更高）
+
+Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 PostgresSQL 9.3 或者更高）
+
+### 表是否存在
+
+可以使用 `hasTable()` 判断表是否存在。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $exists = $this->hasTable('users');
+        if ($exists) {
+            // do something
+        }
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+
+    }
+}
+```
+
+### 删除表
+
+可以用 `dropTable()` 方法删除表。这时可以在 \`down\(\)\` 方法中重新创建表，可以在回滚的时候恢复。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $this->dropTable('users');
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        $users = $this->table('users');
+        $users->addColumn('username', 'string', array('limit' => 20))
+              ->addColumn('password', 'string', array('limit' => 40))
+              ->addColumn('password_salt', 'string', array('limit' => 40))
+              ->addColumn('email', 'string', array('limit' => 100))
+              ->addColumn('first_name', 'string', array('limit' => 30))
+              ->addColumn('last_name', 'string', array('limit' => 30))
+              ->addColumn('created', 'datetime')
+              ->addColumn('updated', 'datetime', array('null' => true))
+              ->addIndex(array('username', 'email'), array('unique' => true))
+              ->save();
+    }
+}
+```
+
+### 重命名表名
+
+可以用 `rename()` 方法重命名表名。
+
+```
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class MyNewMigration extends AbstractMigration
+{
+    /**
+     * Migrate Up.
+     */
+    public function up()
+    {
+        $table = $this->table('users');
+        $table->rename('legacy_users');
+    }
+
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        $table = $this->table('legacy_users');
+        $table->rename('users');
+    }
+}
+```
+
+## 字段操作
+
+
 
 
 
