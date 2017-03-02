@@ -121,5 +121,9 @@ Phinx只能回滚以下命令：
 
 如果一个命令无法回滚，那 Phinx 会抛出 `IrreversibleMigrationException` 异常。
 
+### Up 方法
+
+
+
 
 
