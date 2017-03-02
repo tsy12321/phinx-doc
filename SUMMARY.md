@@ -13,4 +13,5 @@
   * [字段操作](writing-migrations-working-with-columns.md)
   * [索引操作](writing-migrations-workings-with-indexes.md)
   * [外键操作](writing-migrations-working-with-foreign-keys.md)
+* [数据库Seeding](database-seeding.md)
 
