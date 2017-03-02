@@ -1,6 +1,6 @@
 # 安装
 
-Phinx 可以使用 Composer 进行安装，Composer是一个PHP依赖管理工具。更多信息请访问 [Composer](https://getcomposer.org/)官网。
+Phinx 可以使用 Composer 进行安装，Composer是一个PHP依赖管理工具。更多信息请访问 [Composer](https://getcomposer.org/) 官网。
 
 > Phinx 至少需要PHP 5.4 或更新的版本
 
