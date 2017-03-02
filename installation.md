@@ -6,7 +6,7 @@ Phinx 可以使用 Composer 进行安装，Composer是一个PHP依赖管理工�
 
 使用Composer进行安装Phinx：
 
-```
+```bash
 php composer.phar require robmorgan/phinx
 ```
 
@@ -14,7 +14,7 @@ php composer.phar require robmorgan/phinx
 
 安装后，Phinx 现在可以在你的项目中执行初始化
 
-```
+```bash
 vendor/bin/phinx init
 ```
 
