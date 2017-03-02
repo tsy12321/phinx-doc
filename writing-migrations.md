@@ -14,15 +14,11 @@ $ php vendor/bin/phinx create MyNewMigration
 
 这将创建一个新的迁移脚本，格式是 `YYYYMMDDHHMMSS_my_new_migration.php` ，前14个字符是当前的timestamp，精确到秒。
 
-
-
 如果你指定了多个脚本路径，将会提示你选择哪一个。
 
 
 
 Phinx 自动创建的迁移脚本框架有一个方法：
-
-
 
 ```
 <?php
@@ -58,8 +54,6 @@ class MyNewMigration extends AbstractMigration
     }
 }
 ```
-
-
 
 
 
