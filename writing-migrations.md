@@ -280,6 +280,10 @@ class MyNewMigration extends AbstractMigration
 }
 ```
 
+接下来，你可以用 Table 对象提供的方法来操作修改数据库了
+
+### Save 方法
+
 
 
 
