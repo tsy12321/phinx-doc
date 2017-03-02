@@ -4,7 +4,7 @@
 
 让我们从创建一个新的 Phinx 迁移脚本开始。使用 `create` 命令：
 
-```
+```bash
 $ php vendor/bin/phinx create MyNewMigration
 ```
 
@@ -14,7 +14,7 @@ $ php vendor/bin/phinx create MyNewMigration
 
 Phinx 自动创建的迁移脚本框架有一个方法：
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
@@ -55,7 +55,7 @@ class MyNewMigration extends AbstractMigration
 
 Phinx 0.2.0 介绍了一个新功能-逆迁移（回滚）。现在这个功能成为了脚本的默认方法。在这个方法中，你只需要定义 `up` 的逻辑，Phinx 可以在回滚的时候自动识别出如何down。比如：
 
-```
+```php
 <?php
 
 use Phinx\Migration\AbstractMigration;
