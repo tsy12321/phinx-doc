@@ -143,7 +143,7 @@ class MyNewMigration extends AbstractMigration
 }
 ```
 
-另外，MySQL adapter 支持一下选项
+另外，MySQL adapter 支持以下选项
 
 | 选项 | 描述 |
 | :--- | :--- |
