@@ -55,7 +55,7 @@ Postgres adapter 支持 `smallint` 、`json` 、`jsonb` 和 `uuid` （需要 Pos
 
 | 选项 | 描述 |
 | :--- | :--- |
-| identity | 开启或关闭自增长 |
+| identity | 开启或关闭自增长 |
 | signed | 开启或关闭 unsigned 选项（仅适用于 MySQL） |
 
 `timestamp` 类型字段：
@@ -106,7 +106,7 @@ class MyNewMigration extends AbstractMigration
 | update | 设置一个触发器当数据更新时 |
 | delete | 设置一个触发器当数据删除时 |
 
-你可以将一个或者多个选项到第三个选项参数数组中。
+你可以通过可选的第三个数组型参数将上述选项中的一个或者多个传递到任意字段中。
 
 ### Limit 选项 和 PostgreSQL
 
