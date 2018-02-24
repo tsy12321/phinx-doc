@@ -192,7 +192,7 @@ Phinx 当前支持以下数据库adapter
 
 * [MySQL](http://www.mysql.com/)：指定 `mysql` adapter
 
-* [PostgreSQL](http://www.postgresql.org/)：指定 `pssql`adapter
+* [PostgreSQL](http://www.postgresql.org/)：指定 `pgsql`adapter
 
 * [SQLite](http://www.sqlite.org/)：指定 `sqlite` adapter
 
